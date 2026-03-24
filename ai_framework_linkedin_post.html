@@ -1,0 +1,356 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif}
+  .post{max-width:720px;margin:0 auto;padding:2rem 1rem}
+  .author-bar{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+  .avatar{width:52px;height:52px;border-radius:50%;background:#185FA5;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:18px;color:#E6F1FB;flex-shrink:0}
+  .author-info p{font-size:14px;color:var(--color-text-secondary);margin-top:2px}
+  .author-info strong{font-size:15px;color:var(--color-text-primary);font-weight:500}
+  .headline{font-family:'DM Serif Display',serif;font-size:22px;line-height:1.35;color:var(--color-text-primary);margin-bottom:1rem}
+  .intro{font-size:15px;line-height:1.7;color:var(--color-text-secondary);margin-bottom:1.5rem}
+  .section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:.5rem}
+  .level-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+  .level-header{display:flex;align-items:center;gap:10px;margin-bottom:.75rem}
+  .level-badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px}
+  .l1{background:#E6F1FB;color:#0C447C}
+  .l2{background:#E1F5EE;color:#085041}
+  .l3{background:#FAEEDA;color:#633806}
+  .l4{background:#EEEDFE;color:#3C3489}
+  .level-title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+  .level-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:.75rem}
+  .fw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
+  .fw-pill{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--color-text-primary);cursor:pointer;transition:border-color .15s;text-align:center}
+  .fw-pill:hover{border-color:var(--color-border-secondary)}
+  .fw-pill.active{border-color:#185FA5;color:#185FA5}
+  .divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0}
+  .radar-section{margin-bottom:1.5rem}
+  .radar-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+  .rtab{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-secondary);transition:all .15s}
+  .rtab.active{background:#185FA5;color:#E6F1FB;border-color:#185FA5}
+  .radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .radar-box{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.75rem;position:relative}
+  .radar-box h4{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.25rem}
+  .radar-box p{font-size:11px;color:var(--color-text-secondary);margin-bottom:.5rem}
+  .radar-canvas-wrap{position:relative;height:180px}
+  .key-insight{border-left:3px solid #185FA5;padding:.75rem 1rem;background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:1rem}
+  .key-insight strong{color:var(--color-text-primary);font-weight:500}
+  .cta{font-size:14px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:1rem}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+  .tag{font-size:12px;color:#185FA5;background:#E6F1FB;padding:3px 10px;border-radius:20px}
+  .footer-bar{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:0.5px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-tertiary)}
+  .copy-btn{font-size:12px;padding:5px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-secondary)}
+  .copy-btn:hover{background:var(--color-background-secondary)}
+  .note-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem;font-size:12px;color:var(--color-text-secondary);margin-top:.75rem;line-height:1.6}
+  @media(max-width:520px){.radar-wrap{grid-template-columns:1fr}.fw-grid{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="post">
+
+  <div class="author-bar">
+    <div class="avatar">VS</div>
+    <div class="author-info">
+      <strong>Vito Semeraro</strong>
+      <p>AI Enablement & Digital Transformation PO · PMI-CPMAI</p>
+    </div>
+  </div>
+
+  <h1 class="headline">Gestire progetti AI nel 2025: esistono framework affidabili?<br>Ho analizzato la letteratura — ecco cosa ho trovato.</h1>
+
+  <p class="intro">Lavorando con team AI ho notato che la maggior parte delle organizzazioni usa Scrum o Jira come se stesse sviluppando software classico. Ma i progetti AI non funzionano così: la convergenza del modello è incerta, i dati cambiano, l'etica deve essere embedded dall'inizio. Ho passato settimane ad analizzare paper accademici, report PMI, e documentazione tecnica dei principali framework di orchestrazione. Il risultato è questa mappa in 4 livelli — che tratto anche nel paper che sto preparando sulla gestione agile dei progetti AI.</p>
+
+  <hr class="divider">
+
+  <div class="section-label">Perché 4 livelli?</div>
+  <p class="intro" style="margin-bottom:1rem">I framework non sono tutti uguali: alcuni gestiscono il <em>ciclo di vita del progetto</em>, altri coordinano <em>agenti AI autonomi</em> a runtime. Confonderli porta a scelte sbagliate. Ecco la tassonomia che propongo.</p>
+
+  <div class="level-card">
+    <div class="level-header"><span class="level-badge l1">Livello 1</span><span class="level-title">Framework AI-native per progetti</span></div>
+    <p class="level-desc">Progettati specificamente per gestire l'intero ciclo di vita di un progetto AI: dalla definizione del business problem alla messa in produzione del modello. Includono governance, etica e gestione dei dati come elementi strutturali.</p>
+    <div class="fw-grid" id="l1-pills">
+      <div class="fw-pill" onclick="selectFw('CPMAI')">PMI-CPMAI™</div>
+      <div class="fw-pill" onclick="selectFw('CRISP')">CRISP-DM</div>
+      <div class="fw-pill" onclick="selectFw('TDAMR')">TDAMR</div>
+      <div class="fw-pill" onclick="selectFw('MAISTRO')">MAISTRO</div>
+    </div>
+  </div>
+
+  <div class="level-card">
+    <div class="level-header"><span class="level-badge l2">Livello 2</span><span class="level-title">Framework Agile adattati all'AI</span></div>
+    <p class="level-desc">Metodologie Agile nate per lo sviluppo software, riutilizzate — con adattamenti — per progetti AI. Non risolvono nativamente i problemi data-centrici o di governance etica, ma restano la "shell operativa" più diffusa.</p>
+    <div class="fw-grid">
+      <div class="fw-pill" onclick="selectFw('SCRUM')">Scrum adattato</div>
+      <div class="fw-pill" onclick="selectFw('SAFe')">SAFe</div>
+      <div class="fw-pill" onclick="selectFw('KANBAN')">Kanban</div>
+      <div class="fw-pill" onclick="selectFw('LESS')">LeSS</div>
+    </div>
+  </div>
+
+  <div class="level-card">
+    <div class="level-header"><span class="level-badge l3">Livello 3</span><span class="level-title">Framework operativi post-deployment</span></div>
+    <p class="level-desc">Governano la vita del modello in produzione: monitoring, retraining, drift detection, CI/CD per ML. Non sono framework di PM in senso stretto, ma completano il quadro di governance che i livelli 1 e 2 non coprono.</p>
+    <div class="fw-grid">
+      <div class="fw-pill" onclick="selectFw('MLOPS')">MLOps</div>
+      <div class="fw-pill" onclick="selectFw('AIOPS')">AIOps</div>
+      <div class="fw-pill" onclick="selectFw('DEVOPS')">DevOps+CI/CD</div>
+    </div>
+  </div>
+
+  <div class="level-card">
+    <div class="level-header"><span class="level-badge l4">Livello 4 · Emergente</span><span class="level-title">Framework per team agentici</span></div>
+    <p class="level-desc">La frontiera: coordinano agenti AI che operano autonomamente in team misti umani/AI. Due famiglie distinte — framework di orchestrazione tecnica (per sviluppatori) e framework manageriali (per PM). Solo i più affidabili, con validazione in produzione.</p>
+    <div class="fw-grid">
+      <div class="fw-pill" onclick="selectFw('LANGGRAPH')">LangGraph</div>
+      <div class="fw-pill" onclick="selectFw('CREWAI')">CrewAI</div>
+      <div class="fw-pill" onclick="selectFw('AUTOGEN')">AutoGen/MS Agent</div>
+      <div class="fw-pill" onclick="selectFw('CPMAI-AG')">CPMAI Agentic</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Confronto visuale — grafici radar</div>
+
+  <div class="radar-tabs" id="rtabs">
+    <div class="rtab active" onclick="showGroup('ai-native')">Livello 1 · AI-native</div>
+    <div class="rtab" onclick="showGroup('agile')">Livello 2 · Agile</div>
+    <div class="rtab" onclick="showGroup('ops')">Livello 3 · Ops</div>
+    <div class="rtab" onclick="showGroup('agentic')">Livello 4 · Agentici</div>
+  </div>
+
+  <div class="radar-section" id="group-ai-native">
+    <div class="radar-wrap">
+      <div class="radar-box">
+        <h4>PMI-CPMAI™</h4>
+        <p>PMI / Cognilytica · 2017/2025</p>
+        <div class="radar-canvas-wrap"><canvas id="r-cpmai"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>CRISP-DM</h4>
+        <p>Consorzio industria · 1996</p>
+        <div class="radar-canvas-wrap"><canvas id="r-crisp"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>TDAMR</h4>
+        <p>Ahmed Cherif · 2025</p>
+        <div class="radar-canvas-wrap"><canvas id="r-tdamr"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>MAISTRO</h4>
+        <p>MDPI · 2025</p>
+        <div class="radar-canvas-wrap"><canvas id="r-maistro"></canvas></div>
+      </div>
+    </div>
+    <div class="note-box">PMI-CPMAI™ è l'unico framework in questo gruppo validato su migliaia di progetti reali. TDAMR e MAISTRO sono teorici/simulati — promettenti ma da usare con cautela in produzione.</div>
+  </div>
+
+  <div class="radar-section" id="group-agile" style="display:none">
+    <div class="radar-wrap">
+      <div class="radar-box">
+        <h4>Scrum adattato</h4>
+        <p>Agile Alliance · con adattamenti AI</p>
+        <div class="radar-canvas-wrap"><canvas id="r-scrum"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>SAFe</h4>
+        <p>Scaled Agile Inc. · enterprise</p>
+        <div class="radar-canvas-wrap"><canvas id="r-safe"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>Kanban</h4>
+        <p>Toyota / Anderson · flow-based</p>
+        <div class="radar-canvas-wrap"><canvas id="r-kanban"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>LeSS</h4>
+        <p>Craig Larman · scaling</p>
+        <div class="radar-canvas-wrap"><canvas id="r-less"></canvas></div>
+      </div>
+    </div>
+    <div class="note-box">Tutti i framework Agile del livello 2 coprono bene la delivery iterativa ma mancano di meccanismi nativi per data governance, etica, e model drift. Vanno wrappati da framework di livello 1.</div>
+  </div>
+
+  <div class="radar-section" id="group-ops" style="display:none">
+    <div class="radar-wrap">
+      <div class="radar-box">
+        <h4>MLOps</h4>
+        <p>Google / community · 2019+</p>
+        <div class="radar-canvas-wrap"><canvas id="r-mlops"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>AIOps</h4>
+        <p>Gartner / vendor-driven · 2017+</p>
+        <div class="radar-canvas-wrap"><canvas id="r-aiops"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>DevOps + CI/CD per AI</h4>
+        <p>GitHub / Azure DevOps · esteso</p>
+        <div class="radar-canvas-wrap"><canvas id="r-devops"></canvas></div>
+      </div>
+    </div>
+    <div class="note-box">I framework di livello 3 non gestiscono il progetto: gestiscono il modello in vita. Essenziali per il post-deployment, spesso ignorati nelle fasi di pianificazione iniziale.</div>
+  </div>
+
+  <div class="radar-section" id="group-agentic" style="display:none">
+    <div class="radar-wrap">
+      <div class="radar-box">
+        <h4>LangGraph</h4>
+        <p>LangChain · open-source · 2024</p>
+        <div class="radar-canvas-wrap"><canvas id="r-langgraph"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>CrewAI</h4>
+        <p>João Moura · open-source · 2024</p>
+        <div class="radar-canvas-wrap"><canvas id="r-crewai"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>AutoGen / MS Agent</h4>
+        <p>Microsoft Research · 2025</p>
+        <div class="radar-canvas-wrap"><canvas id="r-autogen"></canvas></div>
+      </div>
+      <div class="radar-box">
+        <h4>CPMAI Agentic</h4>
+        <p>PMI-CPMAI™ · governance layer · 2025</p>
+        <div class="radar-canvas-wrap"><canvas id="r-cpmaag"></canvas></div>
+      </div>
+    </div>
+    <div class="note-box">LangGraph e AutoGen/MS Agent sono i più maturi in produzione. CrewAI eccelle per rapidità di prototipazione. CPMAI Agentic è l'unico con focus esplicito su governance e human-in-the-loop per il PM non tecnico.</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="key-insight"><strong>La tesi centrale:</strong> non esiste un framework unico che copra tutto. Ma PMI-CPMAI™ è l'unico trasversale a tutti i pattern AI e validato empiricamente. La combinazione vincente è: CPMAI come ciclo di vita + framework Agile come shell operativa + MLOps per il post-deployment + LangGraph o AutoGen quando il progetto diventa agentico.</div>
+
+  <p class="cta">Sto lavorando a un paper che approfondisce questa mappatura con analisi delle pratiche trasversali e implicazioni per il ruolo di PM e Scrum Master. Se ti interessa il tema o vuoi contribuire con la tua esperienza — scrivimi nei commenti o in DM.</p>
+
+  <div class="tags">
+    <span class="tag">#AIProjectManagement</span>
+    <span class="tag">#PMICPMAI</span>
+    <span class="tag">#AgileAI</span>
+    <span class="tag">#MLOps</span>
+    <span class="tag">#AgenticAI</span>
+    <span class="tag">#ProductOwner</span>
+    <span class="tag">#DigitalTransformation</span>
+    <span class="tag">#ScrumMaster</span>
+  </div>
+
+  <div class="footer-bar">
+    <span>Vito Semeraro · AI Enablement PO · Milano</span>
+    <button class="copy-btn" onclick="copyPost()">Copia testo per LinkedIn</button>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const LABELS = ['Copertura pattern AI','Validazione empirica','Governance & etica','Maturità tecnologica','Facilità adozione','Gestione dati'];
+
+const DATA = {
+  'r-cpmai':   { d:[9,9,9,9,7,9], c:'#185FA5' },
+  'r-crisp':   { d:[6,8,3,8,7,8], c:'#0F6E56' },
+  'r-tdamr':   { d:[5,2,5,6,6,7], c:'#BA7517' },
+  'r-maistro': { d:[6,2,6,5,6,6], c:'#534AB7' },
+  'r-scrum':   { d:[4,8,2,7,9,3], c:'#185FA5' },
+  'r-safe':    { d:[4,7,3,7,5,3], c:'#0F6E56' },
+  'r-kanban':  { d:[3,8,2,7,9,2], c:'#BA7517' },
+  'r-less':    { d:[4,6,2,6,6,3], c:'#534AB7' },
+  'r-mlops':   { d:[3,8,5,9,5,9], c:'#185FA5' },
+  'r-aiops':   { d:[3,7,4,8,6,8], c:'#0F6E56' },
+  'r-devops':  { d:[2,9,3,9,7,7], c:'#BA7517' },
+  'r-langgraph':{ d:[7,8,5,9,6,6], c:'#185FA5' },
+  'r-crewai':  { d:[6,6,4,7,9,5], c:'#0F6E56' },
+  'r-autogen': { d:[7,7,6,8,7,6], c:'#BA7517' },
+  'r-cpmaag':  { d:[8,7,9,7,6,7], c:'#534AB7' },
+};
+
+const charts = {};
+function makeChart(id) {
+  const el = document.getElementById(id);
+  if (!el || charts[id]) return;
+  const {d, c} = DATA[id];
+  charts[id] = new Chart(el, {
+    type: 'radar',
+    data: {
+      labels: LABELS,
+      datasets: [{
+        data: d,
+        backgroundColor: c + '22',
+        borderColor: c,
+        borderWidth: 2,
+        pointBackgroundColor: c,
+        pointRadius: 3,
+        pointHoverRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          min: 0, max: 10,
+          ticks: { stepSize: 2, display: false },
+          grid: { color: 'rgba(120,120,120,0.15)' },
+          angleLines: { color: 'rgba(120,120,120,0.15)' },
+          pointLabels: { font: { size: 9 }, color: '#888' }
+        }
+      },
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => ' ' + LABELS[ctx.dataIndex] + ': ' + ctx.raw + '/10' }
+      }}
+    }
+  });
+}
+
+function initGroup(groupId) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('canvas').forEach(c => makeChart(c.id));
+}
+
+function showGroup(name) {
+  ['ai-native','agile','ops','agentic'].forEach(g => {
+    document.getElementById('group-' + g).style.display = g === name ? '' : 'none';
+  });
+  document.querySelectorAll('.rtab').forEach((t, i) => {
+    t.classList.toggle('active', ['ai-native','agile','ops','agentic'][i] === name);
+  });
+  setTimeout(() => initGroup('group-' + name), 50);
+}
+
+function selectFw(fw) {}
+
+function copyPost() {
+  const text = `Gestire progetti AI nel 2025: esistono framework affidabili?
+Ho analizzato paper accademici, report PMI e documentazione tecnica. Il risultato è una mappa in 4 livelli:
+
+🔵 Livello 1 – Framework AI-native per progetti
+PMI-CPMAI™ · CRISP-DM · TDAMR · MAISTRO
+Gestiscono il ciclo di vita completo con governance etica integrata. PMI-CPMAI™ è l'unico validato su migliaia di progetti reali.
+
+🟢 Livello 2 – Framework Agile adattati all'AI  
+Scrum adattato · SAFe · Kanban · LeSS
+Shell operativa diffusa, ma non coprono nativamente data governance o model drift. Devono essere "wrappati" da framework di Livello 1.
+
+🟡 Livello 3 – Framework operativi post-deployment
+MLOps · AIOps · DevOps+CI/CD
+Governano il modello in produzione. Spesso ignorati nelle fasi di pianificazione.
+
+🟣 Livello 4 (emergente) – Framework per team agentici
+LangGraph · CrewAI · AutoGen/MS Agent · CPMAI Agentic
+La frontiera: coordinano agenti AI autonomi in team misti umani/AI.
+
+La tesi: non esiste un framework unico. Ma la combinazione vincente è CPMAI + Agile + MLOps + framework agentico quando serve.
+
+Sto lavorando a un paper su questo tema. Se ti interessa o vuoi contribuire — scrivimi.
+
+#AIProjectManagement #PMICPMAI #AgileAI #MLOps #AgenticAI #ProductOwner #DigitalTransformation`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copiato ✓';
+    setTimeout(() => btn.textContent = 'Copia testo per LinkedIn', 2000);
+  });
+}
+
+setTimeout(() => initGroup('group-ai-native'), 200);
+</script>
